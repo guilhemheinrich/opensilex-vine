@@ -20,7 +20,17 @@ mod_file_loader_ui <- function(id) {
         choices = c("Fichier", "Copier-coller"),
         status = "primary"
       ),
-      conditionalPanel(
+      shinyWidgets::prettySwitch(
+          ns("header2"),
+          label = "Header",
+          value = TRUE,
+          inline = TRUE,
+          status = "success",
+          bigger = TRUE
+      ),
+      shiny::numericInput("skipLines", label="Nb lignes à passer",
+        value=0),
+      shiny::conditionalPanel(
         #### OPTION 1: upload file
         condition = "input.fileOrigin == 'Fichier'",
         ns = ns,
@@ -31,14 +41,13 @@ mod_file_loader_ui <- function(id) {
                      ".xls",
                      ".csv")
         ),
-        numericInput(ns("skipLines"), label = "Nombre de lignes à passer (en-tête additionnel)",
-                     value = 0),
+
         uiOutput(ns("dropdownUI")),
 
 
       ),
-      # end ConditionalPanel
-      conditionalPanel(
+      # end shiny::conditionalPanel
+      shiny::conditionalPanel(
         ##### OPTION 2: copy paste
         condition = "input.fileOrigin == 'Copier-coller'",
         ns = ns,
@@ -155,11 +164,10 @@ mod_file_loader_server <- function(id) {
     })
 
 
-    observeEvent(c(input$sheet, input$skipLines), {
+    observeEvent(c(input$sheet), {
       Dat1 <- readxl::read_xlsx(
         path = req(input$file1$datapath),
-        sheet = req(input$sheet),
-        skip = input$skipLines
+        sheet = req(input$sheet)
       )
       colnames(Dat1) <-
         iconv(colnames(Dat1), from = "UTF-8", to = "ASCII//TRANSLIT//IGNORE")
@@ -214,7 +222,9 @@ mod_file_loader_server <- function(id) {
                       scrollX = TRUE
                     ))
     })
-
+    return(list(
+      data = Data
+      ))
   })
 }
 
