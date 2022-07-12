@@ -10,7 +10,7 @@ app_ui <- function(request) {
     golem_add_external_resources(),
     # Your application UI logic
     navbarPage("Vine golem",
-               tabPanel("Opensilex authentication", mod_authentification_ui("auth", default_host = "http://opensilex.org:8084/rest")),
+              #  tabPanel("Opensilex authentication", mod_authentification_ui("auth", default_host = "http://opensilex.org:8084/rest")),
                tabPanel("Data input", mod_file_loader_ui("input")),
                tabPanel("Phénotype", mod_etl_ui("pheno"))
     )
