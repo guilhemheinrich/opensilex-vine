@@ -3,15 +3,21 @@ config <- list(
         static = list(
             list(
                 name = "Name",
-                validation = function() {
+                validation = function(input) {
                     return(TRUE)
                 }
             ),
             list(
                 name = "Date",
-                validation = function() {
+                validation = function(input) {
                     return(TRUE)
                 }
+            ),
+            list(
+              name = "Other",
+              validation = function(input) {
+                return(TRUE)
+              }
             )
         ),
         dynamic = function(output_col_name) {
