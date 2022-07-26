@@ -17,7 +17,7 @@ config <- list(
               name = "Other",
               validation = function(input) {
                 return(TRUE)
-              }
+              } 
             )
         ),
         dynamic = function(output_col_name) {
