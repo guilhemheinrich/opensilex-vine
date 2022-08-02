@@ -12,4 +12,5 @@ app_server <- function(input, output, session) {
   authentification <- mod_authentification_server("auth")
   file_loader <- mod_file_loader_server("input")
   pheno_etl <- mod_etl_server("pheno", DATA = file_loader$data, server_configuration = pheno_config$config)
+  visualisation <- mod_summary_visualisation_server("visu", DATA = file_loader$data)
 }

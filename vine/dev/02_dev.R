@@ -21,9 +21,10 @@ usethis::use_dev_package("opensilexR", remote="guilhemheinrich/R-opensilex-packa
 
 ## Add modules ----
 ## Create a module infrastructure in R/
-golem::add_module(name = "authentication", with_test = TRUE) # Name of the module
-golem::add_module(name = "file_loader", with_test = TRUE) # Name of the module
-golem::add_module(name = "etl", with_test = TRUE) # Name of the module
+golem::add_module(name = "authentication", with_test = TRUE)
+golem::add_module(name = "file_loader", with_test = TRUE)
+golem::add_module(name = "etl", with_test = TRUE)
+golem::add_module(name = "summary_visualisation", with_test = TRUE)
 
 ## Add helper functions ----
 ## Creates fct_* and utils_*

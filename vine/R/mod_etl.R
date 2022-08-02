@@ -50,31 +50,31 @@ mod_etl_server <-
     )
 
     # JS renderer function, as rhandsontable doesn't seems to work for a specific row/column
-    readonly_cells <- paste(
-      "
-        function(instance, td, row, col, prop, value, cellProperties) {
-          switch (typeof value) {
-            case 'boolean':
-              Handsontable.renderers.CheckboxRenderer.apply(this, arguments);
-              break;
-            case 'numeric':
-              Handsontable.renderers.NumericRenderer.apply(this, arguments);
-              break;
-            default:
-              Handsontable.renderers.TextRenderer.apply(this, arguments);
-          }
-          if ((col === 0 || col === 2 ) && [", paste((1:length(column_names)) - 1, collapse = ", "), "].includes(row) ) {
-            td.style.background = 'lightgrey';
-            cellProperties.readOnly = true;
-          } else {
-            cellProperties.readOnly = false;
-          }
-          console.log(typeof value)
-          console.log(td)
-          return td
-        }
-      "
-    )
+    # readonly_cells <- paste(
+    #   "
+    #     function(instance, td, row, col, prop, value, cellProperties) {
+    #       switch (typeof value) {
+    #         case 'boolean':
+    #           Handsontable.renderers.CheckboxRenderer.apply(this, arguments);
+    #           break;
+    #         case 'numeric':
+    #           Handsontable.renderers.NumericRenderer.apply(this, arguments);
+    #           break;
+    #         default:
+    #           Handsontable.renderers.TextRenderer.apply(this, arguments);
+    #       }
+    #       if ((col === 0 || col === 2 ) && [", paste((1:length(column_names)) - 1, collapse = ", "), "].includes(row) ) {
+    #         td.style.background = 'lightgrey';
+    #         cellProperties.readOnly = true;
+    #       } else {
+    #         cellProperties.readOnly = false;
+    #       }
+    #       console.log(typeof value)
+    #       console.log(td)
+    #       return td
+    #     }
+    #   "
+    # )
 
     moduleServer(id, function(input, output, session) {
       ns <- session$ns

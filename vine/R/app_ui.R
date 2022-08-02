@@ -12,6 +12,7 @@ app_ui <- function(request) {
     navbarPage("Vine golem",
               #  tabPanel("Opensilex authentication", mod_authentification_ui("auth", default_host = "http://opensilex.org:8084/rest")),
                tabPanel("Data input", mod_file_loader_ui("input")),
+               tabPanel("Visualisation Summary", mod_summary_visualisation_ui("visu")),
                tabPanel("Phénotype", mod_etl_ui("pheno"))
     )
   )
