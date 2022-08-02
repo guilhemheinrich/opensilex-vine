@@ -111,7 +111,7 @@ mod_file_loader_server <- function(id) {
              "xslx" = {
                Workbook(openxlsx::loadWorkbook(input$file1$datapath))
                Sheets(names(Workbook()))
-               output$dropdownUI <- renderUI({
+               output$dropdownUI <- shiny::renderUI({
                  shiny::selectInput(ns("sheet"), "Choix d'une feuille", Sheets())
                })
              },
